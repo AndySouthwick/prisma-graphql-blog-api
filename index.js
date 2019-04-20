@@ -29,8 +29,7 @@ const resolvers = {
   },
   Mutation: {
     createDraft(root, args, context) {
-      return context.prisma.createPost(
-        {
+      return context.prisma.createPost({
           title: args.title,
           author: {
             connect: {id: args.userId}
@@ -42,7 +41,7 @@ const resolvers = {
     },
     updateAPost(root, args, context){
       console.log(args)
-      return context.prisma.updatePost({
+      return context.prisma.updatePos({
           where:{id: args.postId},
           data: {
             published: args.published,
