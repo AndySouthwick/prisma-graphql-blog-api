@@ -6,6 +6,7 @@ type Query {
     canReadposts:String
     allUsers: [User]
     allPosts: [Post!]!
+    frontPagePosts(skip: Int, first: Int, orderBy: PostOrderByInput): [Post!]!
 }
 
 type Mutation {
@@ -35,4 +36,9 @@ type Post {
 
 type AuthenticatedToken {
     token: String
+}
+
+enum PostOrderByInput {
+  createdAt_ASC
+  createdAt_DESC
 }

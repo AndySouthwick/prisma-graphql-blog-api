@@ -1,13 +1,13 @@
 type User {
-  id: ID! @unique
-  email: String! @unique
-  hashed: String!
-}
-type Post {
-  id: ID! @unique
-  title: String!
-  published: Boolean! @default(value: "false")
-  author: User
-  content: String
-  imgUrl: String
-}
+   id: ID! @unique
+   email: String! @unique
+   hashed: String!
+ }
+ type Post {
+   id: ID! @unique
+   title: String!
+   published: Boolean! @default(value: "false")
+   author: User
+   content: String
+   imgUrl: String
+ }

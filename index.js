@@ -25,6 +25,9 @@ const resolvers = {
       return context.prisma.user({
         id: args.userId
       }).posts()
+    },
+    frontPagePosts(root, args, context){
+      return context.prisma.posts({where: {published: true, }, skip: args.skip, first: args.first, orderBy: args.orderBy })
     }
   },
   Mutation: {
@@ -40,11 +43,10 @@ const resolvers = {
       )
     },
     updateAPost(root, args, context){
-      console.log(args)
-      return context.prisma.updatePos({
+      console.log('from update', args)
+      return context.prisma.updatePost({
           where:{id: args.postId},
           data: {
-            published: args.published,
             title: args.title,
             content: args.content,
             imgUrl: args.imgUrl
@@ -73,7 +75,6 @@ const resolvers = {
       )
     },
     async loginUser(root, args, context) {
-      console.log(args)
       const getUser = await context.prisma.user({email: args.email})
       const hashCheck = bcrypt.compareSync(args.hashed, getUser.hashed);
       if (hashCheck) {
